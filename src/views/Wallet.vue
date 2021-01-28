@@ -102,7 +102,7 @@
 					</div>
 				</div>
 				<div class="diagram-header">
-					Распределение криптовалют в вашем кошельке
+					Распределение криптовалют в вашем портфеле
 				</div>
 				<div class="wallet__diagram">
 					<CryptoPie
@@ -213,7 +213,7 @@ export default Vue.extend({
 		},
 	},
 	created(){
-		document.title = "Кошелёк"
+		document.title = "Портфель"
 	},
 	async beforeMount() {
 		await this.$store.dispatch("changeEthereumValue")

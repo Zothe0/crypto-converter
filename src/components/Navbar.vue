@@ -1,7 +1,7 @@
 <template>
 	<div class="nav">
 		<router-link to="/" class="nav__link">Конвертер</router-link>
-		<router-link to="/wallet" class="nav__link">Кошелёк</router-link>
+		<router-link to="/wallet" class="nav__link">Портфель</router-link>
 	</div>
 </template>
 
