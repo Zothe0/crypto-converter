@@ -70,7 +70,6 @@
 import Vue from "vue"
 import RateChart from "@/components/RateChart.vue"
 import getRates from "@/api/getRates.ts"
-import getCurRate from "@/api/getCurRate"
 
 const btc = "Bitcoin (BTC)"
 const etc = "Ethereum (ETH)"
@@ -81,7 +80,7 @@ export default Vue.extend({
 	components: {
 		RateChart,
 	},
-	created(){
+	created() {
 		document.title = "Конвертер криптовалют"
 	},
 	async beforeMount() {
