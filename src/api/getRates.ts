@@ -7,7 +7,5 @@ export default async function(crypto: string): Promise<IRateData> {
 	const response = await fetch(
 		`https://api.coingecko.com/api/v3/coins/${crypto}/market_chart?vs_currency=usd&days=14&interval=daily`
 	)
-	// ethereum
-	
 	return response.json()
 }

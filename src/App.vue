@@ -49,22 +49,22 @@ input
 	outline: none
 	border: none
 @mixin scrollbar()
-::-webkit-scrollbar 
+::-webkit-scrollbar
 	width: 12px
 	height: 3px
-::-webkit-scrollbar-button 
-::-webkit-scrollbar-track 
+::-webkit-scrollbar-button
+::-webkit-scrollbar-track
 	background-color: #999
-::-webkit-scrollbar-track-piece 
+::-webkit-scrollbar-track-piece
 	background-color: #a1fcca
 	width: 10px
-::-webkit-scrollbar-thumb 
+::-webkit-scrollbar-thumb
 	height: 50px
 	background-color: #28d778
 	width: 10px
-::-webkit-scrollbar-corner 
+::-webkit-scrollbar-corner
 	background-color: #999
-::-webkit-resizer 
+::-webkit-resizer
 	background-color: #666
 /*Взят из инета*/
 html, body, div, span, applet, object, iframe,

@@ -38,6 +38,9 @@
 				</div>
 				<div class="row-result row">
 					<span> {{ select2 }}: </span>
+					<div class="error" v-if="inputError">
+						Введите корректное число
+					</div>
 					<div class="result" v-if="result">
 						{{ result }}
 					</div>
@@ -79,7 +82,7 @@ export default Vue.extend({
 		RateChart,
 	},
 	async beforeMount() {
-		this.$store.dispatch("changeEthereumValue")
+		await this.$store.dispatch("changeEthereumValue")
 		await this.$store.dispatch("changeBitcoinValue")
 		this.currentRate = this.$store.state.bitcoinValue
 		this.updateDataRates("bitcoin")
@@ -90,6 +93,7 @@ export default Vue.extend({
 			select2: usd,
 			chartSelect: "BTC / USD",
 			input: "",
+			inputError: false,
 			currentRate: 2,
 			result: 0,
 			loaded: false,
@@ -117,9 +121,11 @@ export default Vue.extend({
 		}
 	},
 	methods: {
-		async selectChanged(event: any) {
+		selectChanged(event: any) {
 			this.input = ""
 			this.result = 0
+			const bitCache = this.$store.state.bitcoinValue
+			const etcCache = this.$store.state.ethereumValue
 			if (
 				(this.select1 === btc && this.select2 === btc) ||
 				(this.select1 === etc && this.select2 === etc) ||
@@ -127,19 +133,17 @@ export default Vue.extend({
 			) {
 				this.currentRate = 1
 			} else if (this.select1 === btc && this.select2 === usd) {
-				this.currentRate = await this.btcRateCache
+				this.currentRate = bitCache
 			} else if (this.select1 === usd && this.select2 === btc) {
-				this.currentRate = 1 / (await this.btcRateCache)
+				this.currentRate = 1 / bitCache
 			} else if (this.select1 === etc && this.select2 === usd) {
-				this.currentRate = await this.etcRateCache
+				this.currentRate = etcCache
 			} else if (this.select1 === usd && this.select2 === etc) {
-				this.currentRate = 1 / (await this.etcRateCache)
+				this.currentRate = 1 / etcCache
 			} else if (this.select1 === btc && this.select2 === etc) {
-				this.currentRate =
-					(await this.btcRateCache) / (await this.etcRateCache)
+				this.currentRate = bitCache / etcCache
 			} else if (this.select1 === etc && this.select2 === btc) {
-				this.currentRate =
-					(await this.etcRateCache) / (await this.btcRateCache)
+				this.currentRate = etcCache / bitCache
 			}
 		},
 		drawChart() {
@@ -173,6 +177,11 @@ export default Vue.extend({
 			this.loaded = true
 		},
 		computeResult() {
+			if (isNaN(Number(this.input))) {
+				this.inputError = true
+			} else {
+				this.inputError = false
+			}
 			this.result = Number(this.input) * this.currentRate
 			this.result =
 				this.result % 1000 < 1
@@ -202,6 +211,11 @@ export default Vue.extend({
 	background-color: #28d778
 	color: #fff
 	padding: 15px
+.error
+	color: #f00
+	font-size: 18px
+	display: flex
+	align-items: flex-end
 .row
 	display: flex
 	justify-content: space-between
