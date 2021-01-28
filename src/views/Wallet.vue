@@ -212,6 +212,9 @@ export default Vue.extend({
 			}, 10)
 		},
 	},
+	created(){
+		document.title = "Кошелёк"
+	},
 	async beforeMount() {
 		await this.$store.dispatch("changeEthereumValue")
 		await this.$store.dispatch("changeBitcoinValue")

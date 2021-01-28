@@ -81,6 +81,9 @@ export default Vue.extend({
 	components: {
 		RateChart,
 	},
+	created(){
+		document.title = "Конвертер криптовалют"
+	},
 	async beforeMount() {
 		await this.$store.dispatch("changeEthereumValue")
 		await this.$store.dispatch("changeBitcoinValue")
