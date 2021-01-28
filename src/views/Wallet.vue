@@ -3,7 +3,6 @@
 		<div class="container">
 			<div class="wallet">
 				<div class="wallet__header">Ваш портфель</div>
-
 				<div class="buy">
 					<div class="row">
 						<span>
@@ -128,7 +127,7 @@ export default Vue.extend({
 		buySelect() {
 			this.buyInput = ""
 			this.buyResult = 0
-			this.buyError=false
+			this.buyError = false
 			if (this.select1 === "Bitcoin (BTC)") {
 				this.buyCof = 1 / this.$store.state.bitcoinValue
 			} else {
@@ -159,8 +158,8 @@ export default Vue.extend({
 		sellSelect() {
 			this.sellInput = ""
 			this.sellResult = 0
-			this.sellError=false
-			this.walletError=false
+			this.sellError = false
+			this.walletError = false
 			if (this.select1 === "Bitcoin (BTC)") {
 				this.sellCof = this.$store.state.bitcoinValue
 			} else {

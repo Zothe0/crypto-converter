@@ -1,6 +1,6 @@
-import Vue from 'vue'
-import Vuex from 'vuex'
-import getCurRate from '@/api/getCurRate';
+import Vue from "vue"
+import Vuex from "vuex"
+import getCurRate from "@/api/getCurRate"
 
 Vue.use(Vuex)
 interface IState {
